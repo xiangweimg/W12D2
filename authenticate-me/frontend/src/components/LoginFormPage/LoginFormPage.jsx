@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { login } from "../../store/session"
 
 export default function LoginFormPage() {
+    const sessionUser = useSelector(state => state.session.user);
+    
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
-
+    
     const dispatch = useDispatch()
-
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         setHasSubmitted(true)
@@ -28,6 +31,8 @@ export default function LoginFormPage() {
         if (password.length < 1) errors.push("please enter your password")
         {setValidationErrors(errors)}
     }, [credential, password])
+
+    if (sessionUser) return <Redirect to="/" />
 
     return (
         <form onSubmit={handleSubmit}>

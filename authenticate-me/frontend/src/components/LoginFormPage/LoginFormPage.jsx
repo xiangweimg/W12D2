@@ -5,7 +5,7 @@ import { login } from "../../store/session"
 
 export default function LoginFormPage() {
     const sessionUser = useSelector(state => state.session.user);
-    
+    console.log(sessionUser)
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState([])

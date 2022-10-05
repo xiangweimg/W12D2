@@ -18,14 +18,14 @@ async function csrfFetch (url, options = {}) {
 
 export default csrfFetch;
 
-export function storeCSRFToken(responseObj) {
-  const csrfToken = responseObj.headers.get('X-CSRF-Token');
-  if (csrfToken) sessionStorage.setItem('X-CSRF-Token', csrfToken);
-}
+// export function storeCSRFToken(responseObj) { //send Xtoken to session storage
+//   const csrfToken = responseObj.headers.get('X-CSRF-Token');
+//   if (csrfToken) sessionStorage.setItem('X-CSRF-Token', csrfToken);
+// }
 
-export async function restoreCSRF () {
-  const res = await csrfFetch('/api/session')
-  storeCSRFToken(res);
-  return res;
-}
+// export async function restoreCSRF () { //get Xtoken when first render
+//   const res = await csrfFetch('/api/session')
+//   storeCSRFToken(res);
+//   return res;
+// }
 

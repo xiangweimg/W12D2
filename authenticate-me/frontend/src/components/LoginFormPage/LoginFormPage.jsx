@@ -4,8 +4,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { login } from "../../store/session"
 
 export default function LoginFormPage() {
-    const sessionUser = useSelector(state => state.session.user);
-    console.log(sessionUser)
+    const sessionUser = useSelector(state => state.session.user);// find current user in state.session
     const [credential, setCredential] = useState("")
     const [password, setPassword] = useState("")
     const [validationErrors, setValidationErrors] = useState([])
@@ -18,13 +17,13 @@ export default function LoginFormPage() {
         setHasSubmitted(true)
         if (validationErrors.length > 0) {alert("cannot submit")
     } else {
-        dispatch(login({credential,password}))
+        dispatch(login({credential,password})) //will dispatch to LoginUser
         setCredential("")
         setPassword("")
         setHasSubmitted(false)
     } 
 }
-
+    
     useEffect(()=> {
         const errors = [];
         if (credential.length < 1) errors.push("please enter your username or email")

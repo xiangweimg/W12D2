@@ -6,7 +6,7 @@ async function csrfFetch (url, options = {}) {
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] = options.headers['Content-Type'] || 'application/json';
     options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
-  }
+  } //如果不是GET，则从sessionStorage 拿Xtoken
 
   const res = await fetch(url, options);
 
